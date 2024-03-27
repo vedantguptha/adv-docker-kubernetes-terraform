@@ -60,6 +60,24 @@ variable "test" {
 }
 
 variable "internet-cidr" {
-  type = string
+  type    = string
   default = "0.0.0.0/0"
+}
+
+
+variable "AMIS" {
+  type    = string
+  default = "ami-05a5bb48beb785bf1"
+}
+
+
+variable "ec2-type" {
+  type    = string
+  default = "t2.micro"
+}
+
+
+variable "inbound-port-numbers" {
+  type    = list(number)
+  default = [80, 443, 8080, 3389, 3306, 5432]
 }

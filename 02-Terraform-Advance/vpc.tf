@@ -7,7 +7,7 @@ resource "aws_vpc" "ctops-vpc" {
   enable_dns_hostnames = true
   enable_dns_support   = true
   tags = {
-    Name    = title("${var.project-name}-${terraform.workspace}")
+    Name    = title("${var.project-name}-prod")
     Creator = var.resource_creator
   }
 }
@@ -24,7 +24,7 @@ resource "aws_subnet" "ctops-public-subnet" {
     Name    = title("${var.project-name}-Public-Subnet-${count.index + 1}")
     Creator = var.resource_creator
   }
-  depends_on = [ aws_vpc.ctops-vpc ]
+  depends_on = [aws_vpc.ctops-vpc]
 }
 #################################################################
 #                       IGW Creation                           ##
@@ -35,7 +35,7 @@ resource "aws_internet_gateway" "ctops-igw" {
     Name    = title("${var.project-name}-IGW")
     Creator = var.resource_creator
   }
-  depends_on = [ aws_vpc.ctops-vpc ]
+  depends_on = [aws_vpc.ctops-vpc]
 }
 ##################################################################
 ##                 Public Route Table                           ##
@@ -50,7 +50,7 @@ resource "aws_route_table" "ctops-public-route-table" {
     Name    = title("${var.project-name}-Public Routes")
     Creator = var.resource_creator
   }
-  depends_on = [ aws_vpc.ctops-vpc, aws_subnet.ctops-public-subnet ]
+  depends_on = [aws_vpc.ctops-vpc, aws_subnet.ctops-public-subnet]
 }
 
 ##################################################################
