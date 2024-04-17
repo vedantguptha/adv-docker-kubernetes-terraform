@@ -23,7 +23,7 @@ resource "aws_subnet" "ctops-public-subnet" {
   availability_zone       = var.azs[count.index]
   map_public_ip_on_launch = true
   tags = merge(
-    { Name    = title("${var.name}-Public-Subnet-${count.index + 1}") },
+    { Name    = title("${var.name}-${var.public_subnets_name[count.index]}-${count.index + 1}") },
     var.tags,
     var.vpc_tags,
   )

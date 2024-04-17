@@ -72,3 +72,7 @@ variable "enable_private" {
      default     = false
 }
 
+variable "public_subnets_name" {
+  type = list(string)
+  default = [ ]
+}
